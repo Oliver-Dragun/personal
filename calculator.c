@@ -1,12 +1,23 @@
 #include <stdio.h>
 
-int calculate(char equation[], int current_index) {
-    int num1 = 0, i = current_index, multiplier = 1;
+double calculate(char equation[], int current_index) {
+    int i = current_index, multiplier = 1;
+    double num1 = 0, temp = 0, divider = 10;
 
     while (equation[i] >= '0' && equation[i] <= '9') {
         num1 = num1 * multiplier + (equation[i] - '0');
         multiplier *= 10;
         i++;
+    }
+
+    if (equation[i] == '.') {
+        i++;
+        while (equation[i] >= '0' && equation[i] <= '9') {
+            temp = (equation[i] - '0');
+            num1 = num1 + temp / divider;
+            divider *= 10;
+            i++;
+        }
     }
 
     if (equation[i] == '\0') {
@@ -37,7 +48,7 @@ int main() {
 
     scanf("%s", &equation);
 
-    printf("%d", calculate(equation, 0));
+    printf("%g", calculate(equation, 0));
 
     return 0;
 }
