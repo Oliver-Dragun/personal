@@ -13,6 +13,11 @@ int tokenize(char equation[], struct token tokens[]) {
     double number = 0, divider = 10, temp;
 
     while (i < 256 && equation[i] != '\0') {
+        if (equation[i] == ' ') {
+            i++;
+            continue;
+        }
+
         if (equation[i] >= '0' && equation[i] <= '9') {
             while (equation[i] >= '0' && equation[i] <= '9') {
                 number = number * multiplier + equation[i] - '0';
@@ -176,7 +181,7 @@ double evaluate_expression(char expression[256]) {
 int main() {
     char expression[256];
 
-    scanf("%s", expression);
+    fgets(expression, 256, stdin);
     printf("%g", evaluate_expression(expression));
 
     return 0;
