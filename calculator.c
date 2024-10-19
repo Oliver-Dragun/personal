@@ -10,7 +10,7 @@ double calculate(char equation[], int current_index) {
         i++;
     }
 
-    if (equation[i] == '.') {
+    if (equation[i] == '.' || equation[i] == ',') {
         i++;
         while (equation[i] >= '0' && equation[i] <= '9') {
             temp = (equation[i] - '0');
